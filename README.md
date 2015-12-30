@@ -7,7 +7,28 @@ mocha-multi-reporters
 npm install mocha-multi-reporters --save-dev
 ```
 
-# License
+## Usage
+
+### Basic
+
+```bash
+$ mocha --reporter mocha-multi-reporters
+```
+
+### Advance
+
+```bash
+$ mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+```
+```js
+// File: config.json
+{
+    "reporterEnabled": "dot"
+}
+```
+
+
+## License
 
 The MIT License (MIT)
 
