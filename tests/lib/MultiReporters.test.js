@@ -44,7 +44,7 @@ describe('lib/MultiReporters', function () {
         describe('#options (3rd-party: multi-reporters)', function () {
             it ('return default options', function () {
                 expect(reporter.getDefaultOptions()).to.be.deep.equal({
-                    reporterEnabled: 'tap, xunit',
+                    reporterEnabled: 'spec, xunit',
                     reporterOptions: {
                         id: 'default'
                     },
@@ -52,7 +52,8 @@ describe('lib/MultiReporters', function () {
                         id: 'dot'
                     },
                     xunitReporterOptions: {
-                        id: 'xunit'
+                        id: 'xunit',
+                        output: 'xunit.xml'
                     },
                     tapReporterOptions: {
                         id: 'tap'

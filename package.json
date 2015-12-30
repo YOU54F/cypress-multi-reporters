@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devtest": "jenkins-mocha --timeout 5000 tests/**/*.test.js*",
+    "devtest": "jenkins-mocha --no-coverage --timeout 5000 tests/**/*.test.js*",
     "lint": "eslint --ext .js .",
     "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*"
   },
