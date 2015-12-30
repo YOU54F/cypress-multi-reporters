@@ -1,6 +1,8 @@
 mocha-multi-reporters
 ===
 
+Generate multiple mocha reports in a single mocha execution.
+
 ## Install
 
 ```
@@ -13,20 +15,140 @@ npm install mocha-multi-reporters --save-dev
 
 ```bash
 $ mocha --reporter mocha-multi-reporters
+  mocha-test #1
+    ✓ sample test #1.1
+    ✓ sample test #1.2
+
+  mocha-test #2
+    ✓ sample test #2.1
+    - sample test #2.2
+
+
+  3 passing (7ms)
+  1 pending
+
+$ cat xunit.xml
+<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Wed, 30 Dec 2015 22:56:39 GMT" time="0.005">
 ```
 
 ### Advance
 
-```bash
-$ mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
-```
+* Generate `spec` and `json` reports.
+
 ```js
 // File: config.json
 {
-    "reporterEnabled": "dot"
+    "reporterEnabled": "spec, json"
 }
 ```
 
+```bash
+$ mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+  mocha-test #1
+    ✓ sample test #1.1
+    ✓ sample test #1.2
+
+  mocha-test #2
+    ✓ sample test #2.1
+    - sample test #2.2
+
+
+  3 passing (6ms)
+  1 pending
+
+{
+  "stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 3,
+    "pending": 1,
+    "failures": 0,
+    "start": "2015-12-30T22:49:39.713Z",
+    "end": "2015-12-30T22:49:39.717Z",
+    "duration": 4
+  },
+  "tests": [
+    {
+      "title": "sample test #1.1",
+      "fullTitle": "mocha-test #1 sample test #1.1",
+      "duration": 1,
+      "err": {}
+    },
+    {
+      "title": "sample test #1.2",
+      "fullTitle": "mocha-test #1 sample test #1.2",
+      "duration": 0,
+      "err": {}
+    },
+    {
+      "title": "sample test #2.1",
+      "fullTitle": "mocha-test #2 sample test #2.1",
+      "duration": 0,
+      "err": {}
+    },
+    {
+      "title": "sample test #2.2",
+      "fullTitle": "mocha-test #2 sample test #2.2",
+      "err": {}
+    }
+  ],
+  "pending": [
+    {
+      "title": "sample test #2.2",
+      "fullTitle": "mocha-test #2 sample test #2.2",
+      "err": {}
+    }
+  ],
+  "failures": [],
+  "passes": [
+    {
+      "title": "sample test #1.1",
+      "fullTitle": "mocha-test #1 sample test #1.1",
+      "duration": 1,
+      "err": {}
+    },
+    {
+      "title": "sample test #1.2",
+      "fullTitle": "mocha-test #1 sample test #1.2",
+      "duration": 0,
+      "err": {}
+    },
+    {
+      "title": "sample test #2.1",
+      "fullTitle": "mocha-test #2 sample test #2.1",
+      "duration": 0,
+      "err": {}
+    }
+  ]
+}%
+```
+
+* Generate `tap` and `xunit` reports.
+
+```js
+// File: config.json
+{
+    "reporterEnabled": "tap, xunit",
+    "xunitReporterOptions": {
+        "output": "xunit-custom.xml"
+    }
+}
+```
+```bash
+$ mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+
+1..4
+ok 1 mocha-test 1 sample test 1.1
+ok 2 mocha-test 1 sample test 1.2
+ok 3 mocha-test 2 sample test 2.1
+ok 4 mocha-test 2 sample test 2.2 # SKIP -
+# tests 3
+# pass 3
+# fail 0
+
+$ cat xunit-custom.xml
+<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Wed, 30 Dec 2015 22:46:26 GMT" time="0.006">
+```
 
 ## License
 
