@@ -3,6 +3,8 @@ mocha-multi-reporters
 
 Generate multiple mocha reports in a single mocha execution.
 
+[![Build Status](https://travis-ci.org/stanleyhlng/mocha-multi-reporters.svg)](https://travis-ci.org/stanleyhlng/mocha-multi-reporters)
+
 ## Install
 
 ```
