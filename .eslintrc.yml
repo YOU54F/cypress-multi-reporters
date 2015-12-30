@@ -5,3 +5,5 @@ rules:
     - stroustrup
     -
       allowSingleLine: true
+  no-console:
+    - 0

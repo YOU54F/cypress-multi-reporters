@@ -131,7 +131,7 @@ describe('lib/MultiReporters', function () {
                 }
             ];
 
-            tests.map(function (test, index) {
+            tests.map(function (test) {
                 suite.addTest(new Test(test.title, function (done) {
                     if (test.state === 'passed') {
                         done();
@@ -178,7 +178,7 @@ describe('lib/MultiReporters', function () {
                 }
             ];
 
-            tests.map(function (test, index) {
+            tests.map(function (test) {
                 suite.addTest(new Test(test.title));
             });
 
