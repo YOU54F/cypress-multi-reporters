@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "devtest": "jenkins-mocha --timeout 5000 tests/**/*.test.js*",
+    "lint": "eslint --ext .js .",
     "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*"
   },
   "author": "",
@@ -19,6 +20,20 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
-    "jenkins-mocha": "^2.5.0"
+    "eslint": "^1.10.3",
+    "eslint-config-pubs": "~1.0.1",
+    "jenkins-mocha": "^2.5.0",
+    "pre-commit": "^1.1.2"
+  },
+  "keywords": [
+    "mocha",
+    "reporter"
+  ],
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "eslintConfig": {
+    "extends": "pubs"
   }
 }

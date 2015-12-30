@@ -1,3 +1,4 @@
+/*global require, describe, it, before, beforeEach */
 var _require = require('root-require');
 var expect = require('chai').expect;
 var Mocha = require('mocha');
@@ -107,7 +108,6 @@ describe('lib/MultiReporters', function () {
     describe('#test', function () {
         var suite;
         var runner;
-        var reporter;
 
         beforeEach(function () {
             var mocha = new Mocha({
@@ -115,7 +115,7 @@ describe('lib/MultiReporters', function () {
             });
             suite = new Suite('#multi-reporter', 'root');
             runner = new Runner(suite);
-            reporter = new mocha._reporter(runner);
+            new mocha._reporter(runner);
         });
 
         it ('should have 1 test failure', function (done) {
