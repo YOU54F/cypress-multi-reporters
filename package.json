@@ -8,8 +8,8 @@
     "lint": "eslint --ext .js .",
     "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Stanley Ng",
+  "license": "MIT",
   "dependencies": {
     "async": "^1.5.0",
     "debug": "^2.2.0",
