@@ -1,0 +1,24 @@
+{
+  "name": "mocha-multi-reporters",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devtest": "jenkins-mocha --timeout 5000 tests/**/*.test.js*",
+    "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.0",
+    "debug": "^2.2.0",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.4",
+    "object-assign-deep": "^0.0.4",
+    "root-require": "^0.3.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "jenkins-mocha": "^2.5.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "reporterEnabled": "tap, xunit",
+
+    "reporterOptions": {
+        "id": "default"
+    },
+
+    "dotReporterOptions": {
+        "id": "dot"
+    },
+
+    "xunitReporterOptions": {
+        "id": "xunit"
+    },
+
+    "tapReporterOptions": {
+        "id": "tap"
+    }
+}
