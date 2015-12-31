@@ -1,14 +1,18 @@
 {
   "name": "mocha-multi-reporters",
   "version": "1.0.0",
-  "description": "",
+  "description": "Generate multiple mocha reports in a single mocha execution.",
   "main": "index.js",
   "scripts": {
     "devtest": "jenkins-mocha --no-coverage --timeout 5000 tests/**/*.test.js*",
     "lint": "eslint --ext .js .",
     "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*"
   },
-  "author": "Stanley Ng",
+  "author": "Stanley Ng <stanleyhlng77-dev@yahoo.com.hk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stanleyhlng/mocha-multi-reporters"
+  },
   "license": "MIT",
   "dependencies": {
     "async": "^1.5.0",
@@ -20,8 +24,9 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "eslint": "^1.10.3",
-    "eslint-config-pubs": "~1.0.1",
+    "eslint-config-defaults": "^7.1.1",
     "jenkins-mocha": "^2.5.0",
+    "mocha": "^2.3.4",
     "pre-commit": "^1.1.2"
   },
   "keywords": [
@@ -33,6 +38,6 @@
     "test"
   ],
   "eslintConfig": {
-    "extends": "pubs"
+    "extends": "defaults"
   }
 }
