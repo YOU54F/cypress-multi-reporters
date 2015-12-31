@@ -1,5 +1,5 @@
 after_success:
-  - ./node_modules/coveralls/bin/coveralls.js
+  - cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 language: node_js
 node_js:
   - "4.1"
