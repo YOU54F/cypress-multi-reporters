@@ -4,6 +4,7 @@ mocha-multi-reporters
 Generate multiple mocha reports in a single mocha execution.
 
 [![Build Status](https://travis-ci.org/stanleyhlng/mocha-multi-reporters.svg)](https://travis-ci.org/stanleyhlng/mocha-multi-reporters)
+[![Coverage Status](https://coveralls.io/repos/stanleyhlng/mocha-multi-reporters/badge.svg?branch=master&service=github)](https://coveralls.io/github/stanleyhlng/mocha-multi-reporters?branch=master)
 
 ## Install
 
