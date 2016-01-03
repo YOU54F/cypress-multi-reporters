@@ -24,7 +24,7 @@ https://github.com/stanleyhlng/mocha-multi-reporters-demo
 ### Basic
 
 ```bash
-$ mocha --reporter mocha-multi-reporters
+$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters
   mocha-test #1
     ✓ sample test #1.1
     ✓ sample test #1.2
@@ -34,13 +34,12 @@ $ mocha --reporter mocha-multi-reporters
     - sample test #2.2
 
 
-  3 passing (7ms)
+  3 passing (6ms)
   1 pending
 
-$ cat xunit.xml
-<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Sun, 03 Jan 2016 08:02:24 GMT" time="0.006">
-<testcase classname="mocha-test #1" name="sample test #1.1" time="0.001"/>
-<testcase classname="mocha-test #1" name="sample test #1.2" time="0.001"/>
+<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Sun, 03 Jan 2016 08:15:14 GMT" time="0.005">
+<testcase classname="mocha-test #1" name="sample test #1.1" time="0"/>
+<testcase classname="mocha-test #1" name="sample test #1.2" time="0"/>
 <testcase classname="mocha-test #2" name="sample test #2.1" time="0"/>
 <testcase classname="mocha-test #2" name="sample test #2.2" time="0"><skipped/></testcase>
 </testsuite>
@@ -58,7 +57,7 @@ $ cat xunit.xml
 ```
 
 ```bash
-$ mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
   mocha-test #1
     ✓ sample test #1.1
     ✓ sample test #1.2
@@ -150,7 +149,7 @@ $ mocha --reporter mocha-multi-reporters --reporter-options configFile=config.js
 }
 ```
 ```bash
-$ mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
 
 1..4
 ok 1 mocha-test 1 sample test 1.1
