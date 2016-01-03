@@ -16,6 +16,9 @@ Generate multiple mocha reports in a single mocha execution.
 npm install mocha-multi-reporters --save-dev
 ```
 
+## Demo
+https://github.com/stanleyhlng/mocha-multi-reporters-demo
+
 ## Usage
 
 ### Basic
@@ -35,7 +38,12 @@ $ mocha --reporter mocha-multi-reporters
   1 pending
 
 $ cat xunit.xml
-<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Wed, 30 Dec 2015 22:56:39 GMT" time="0.005">
+<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Sun, 03 Jan 2016 08:02:24 GMT" time="0.006">
+<testcase classname="mocha-test #1" name="sample test #1.1" time="0.001"/>
+<testcase classname="mocha-test #1" name="sample test #1.2" time="0.001"/>
+<testcase classname="mocha-test #2" name="sample test #2.1" time="0"/>
+<testcase classname="mocha-test #2" name="sample test #2.2" time="0"><skipped/></testcase>
+</testsuite>
 ```
 
 ### Advance
@@ -154,7 +162,12 @@ ok 4 mocha-test 2 sample test 2.2 # SKIP -
 # fail 0
 
 $ cat xunit-custom.xml
-<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Wed, 30 Dec 2015 22:46:26 GMT" time="0.006">
+<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="1" timestamp="Sun, 03 Jan 2016 08:02:24 GMT" time="0.006">
+<testcase classname="mocha-test #1" name="sample test #1.1" time="0.001"/>
+<testcase classname="mocha-test #1" name="sample test #1.2" time="0.001"/>
+<testcase classname="mocha-test #2" name="sample test #2.1" time="0"/>
+<testcase classname="mocha-test #2" name="sample test #2.2" time="0"><skipped/></testcase>
+</testsuite>
 ```
 
 ## License
