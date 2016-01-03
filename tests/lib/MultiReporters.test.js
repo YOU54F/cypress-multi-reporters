@@ -15,7 +15,7 @@ describe('lib/MultiReporters', function () {
 
     describe('#static', function () {
         describe ('#CONFIG_FILE', function () {
-            it ('equals to "../config.json"', function () {
+            it('equals to "../config.json"', function () {
                 expect(MultiReporters.CONFIG_FILE).to.be.equals('../config.json');
             });
         });
@@ -34,6 +34,7 @@ describe('lib/MultiReporters', function () {
             suite = new Suite('#multi-reporter', 'root');
             runner = new Runner(suite);
             options = {
+                execute: false,
                 reporterOptions: {
                     configFile: 'tests/custom-config.json'
                 }
@@ -42,7 +43,7 @@ describe('lib/MultiReporters', function () {
         });
 
         describe('#options (3rd-party: multi-reporters)', function () {
-            it ('return default options', function () {
+            it('return default options', function () {
                 expect(reporter.getDefaultOptions()).to.be.deep.equal({
                     reporterEnabled: 'spec, xunit',
                     reporterOptions: {
@@ -52,8 +53,7 @@ describe('lib/MultiReporters', function () {
                         id: 'dot'
                     },
                     xunitReporterOptions: {
-                        id: 'xunit',
-                        output: 'xunit.xml'
+                        id: 'xunit'
                     },
                     tapReporterOptions: {
                         id: 'tap'
@@ -61,7 +61,7 @@ describe('lib/MultiReporters', function () {
                 });
             });
 
-            it ('return custom options', function () {
+            it('return custom options', function () {
                 expect(reporter.getCustomOptions(options)).to.be.deep.equal({
                     reporterEnabled: 'dot',
                     xunitReporterOptions: {
@@ -70,7 +70,7 @@ describe('lib/MultiReporters', function () {
                 });
             });
 
-            it ('return resultant options by merging both default and custom options', function () {
+            it('return resultant options by merging both default and custom options', function () {
                 expect(reporter.getOptions(options)).to.be.deep.equal({
                     reporterEnabled: 'dot',
                     reporterOptions: {
@@ -91,13 +91,13 @@ describe('lib/MultiReporters', function () {
         });
 
         describe('#options (built-in: mocha-* reporters)', function () {
-            it ('return reporter options: "dot"', function () {
+            it('return reporter options: "dot"', function () {
                 expect(reporter.getReporterOptions(reporter.getOptions(options), 'dot')).to.be.deep.equal({
                     id: 'dot'
                 });
             });
 
-            it ('return reporter options: "xunit"', function () {
+            it('return reporter options: "xunit"', function () {
                 expect(reporter.getReporterOptions(reporter.getOptions(options), 'xunit')).to.be.deep.equal({
                     id: 'xunit',
                     output: 'artifacts/test/custom-xunit.xml'
@@ -119,7 +119,7 @@ describe('lib/MultiReporters', function () {
             new mocha._reporter(runner);
         });
 
-        it ('should have 1 test failure', function (done) {
+        it('should have 1 test failure', function (done) {
             var tests = [
                 {
                     title: '#test-1',
@@ -168,7 +168,7 @@ describe('lib/MultiReporters', function () {
             });
         });
 
-        it ('should have 1 test pending', function (done) {
+        it('should have 1 test pending', function (done) {
             var tests = [
                 {
                     title: '#test-1'
