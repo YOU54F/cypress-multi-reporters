@@ -53,7 +53,8 @@ describe('lib/MultiReporters', function () {
                         id: 'dot'
                     },
                     xunitReporterOptions: {
-                        id: 'xunit'
+                        id: 'xunit',
+                        output: 'xunit.xml'
                     },
                     tapReporterOptions: {
                         id: 'tap'
