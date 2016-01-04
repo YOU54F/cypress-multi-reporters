@@ -10,7 +10,8 @@
     },
 
     "xunitReporterOptions": {
-        "id": "xunit"
+        "id": "xunit",
+        "output": "xunit.xml"
     },
 
     "tapReporterOptions": {
