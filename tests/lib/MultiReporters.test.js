@@ -14,7 +14,7 @@ describe('lib/MultiReporters', function () {
     });
 
     describe('#static', function () {
-        describe ('#CONFIG_FILE', function () {
+        describe('#CONFIG_FILE', function () {
             it('equals to "../config.json"', function () {
                 expect(MultiReporters.CONFIG_FILE).to.be.equals('../config.json');
             });
@@ -27,81 +27,109 @@ describe('lib/MultiReporters', function () {
         var reporter;
         var options;
 
-        beforeEach(function () {
-            var mocha = new Mocha({
-                reporter: MultiReporters
-            });
-            suite = new Suite('#multi-reporter', 'root');
-            runner = new Runner(suite);
-            options = {
-                execute: false,
-                reporterOptions: {
-                    configFile: 'tests/custom-config.json'
-                }
-            };
-            reporter = new mocha._reporter(runner, options);
-        });
-
-        describe('#options (3rd-party: multi-reporters)', function () {
-            it('return default options', function () {
-                expect(reporter.getDefaultOptions()).to.be.deep.equal({
-                    reporterEnabled: 'spec, xunit',
-                    reporterOptions: {
-                        id: 'default'
-                    },
-                    dotReporterOptions: {
-                        id: 'dot'
-                    },
-                    xunitReporterOptions: {
-                        id: 'xunit',
-                        output: 'xunit.xml'
-                    },
-                    tapReporterOptions: {
-                        id: 'tap'
-                    }
+        describe('#internal', function () {
+            beforeEach(function () {
+                var mocha = new Mocha({
+                    reporter: MultiReporters
                 });
-            });
-
-            it('return custom options', function () {
-                expect(reporter.getCustomOptions(options)).to.be.deep.equal({
-                    reporterEnabled: 'dot',
-                    xunitReporterOptions: {
-                        output: 'artifacts/test/custom-xunit.xml'
-                    }
-                });
-            });
-
-            it('return resultant options by merging both default and custom options', function () {
-                expect(reporter.getOptions(options)).to.be.deep.equal({
-                    reporterEnabled: 'dot',
+                suite = new Suite('#internal-multi-reporter', 'root');
+                runner = new Runner(suite);
+                options = {
+                    execute: false,
                     reporterOptions: {
-                        id: 'default'
-                    },
-                    dotReporterOptions: {
+                        configFile: 'tests/custom-internal-config.json'
+                    }
+                };
+                reporter = new mocha._reporter(runner, options);
+            });
+
+            describe('#options (reporters - single)', function () {
+                it('return reporter options: "dot"', function () {
+                    expect(reporter.getReporterOptions(reporter.getOptions(options), 'dot')).to.be.deep.equal({
                         id: 'dot'
-                    },
-                    xunitReporterOptions: {
+                    });
+                });
+
+                it('return reporter options: "xunit"', function () {
+                    expect(reporter.getReporterOptions(reporter.getOptions(options), 'xunit')).to.be.deep.equal({
                         id: 'xunit',
                         output: 'artifacts/test/custom-xunit.xml'
-                    },
-                    tapReporterOptions: {
-                        id: 'tap'
-                    }
+                    });
+                });
+            });
+
+            describe('#options (reporters - multiple)', function () {
+                it('return default options', function () {
+                    expect(reporter.getDefaultOptions()).to.be.deep.equal({
+                        reporterEnabled: 'spec, xunit',
+                        reporterOptions: {
+                            id: 'default'
+                        },
+                        dotReporterOptions: {
+                            id: 'dot'
+                        },
+                        xunitReporterOptions: {
+                            id: 'xunit',
+                            output: 'xunit.xml'
+                        },
+                        tapReporterOptions: {
+                            id: 'tap'
+                        }
+                    });
+                });
+
+                it('return custom options', function () {
+                    expect(reporter.getCustomOptions(options)).to.be.deep.equal({
+                        reporterEnabled: 'dot',
+                        xunitReporterOptions: {
+                            output: 'artifacts/test/custom-xunit.xml'
+                        }
+                    });
+                });
+
+                it('return resultant options by merging both default and custom options', function () {
+                    expect(reporter.getOptions(options)).to.be.deep.equal({
+                        reporterEnabled: 'dot',
+                        reporterOptions: {
+                            id: 'default'
+                        },
+                        dotReporterOptions: {
+                            id: 'dot'
+                        },
+                        xunitReporterOptions: {
+                            id: 'xunit',
+                            output: 'artifacts/test/custom-xunit.xml'
+                        },
+                        tapReporterOptions: {
+                            id: 'tap'
+                        }
+                    });
                 });
             });
         });
 
-        describe('#options (built-in: mocha-* reporters)', function () {
-            it('return reporter options: "dot"', function () {
-                expect(reporter.getReporterOptions(reporter.getOptions(options), 'dot')).to.be.deep.equal({
-                    id: 'dot'
+        describe('#external', function () {
+            beforeEach(function () {
+                var mocha = new Mocha({
+                    reporter: MultiReporters
                 });
+                suite = new Suite('#external-multi-reporter', 'root');
+                runner = new Runner(suite);
+                options = {
+                    execute: false,
+                    reporterOptions: {
+                        configFile: 'tests/custom-external-config.json'
+                    }
+                };
+                reporter = new mocha._reporter(runner, options);
             });
 
-            it('return reporter options: "xunit"', function () {
-                expect(reporter.getReporterOptions(reporter.getOptions(options), 'xunit')).to.be.deep.equal({
-                    id: 'xunit',
-                    output: 'artifacts/test/custom-xunit.xml'
+            describe('#options (external reporters - single)', function () {
+                it('return reporter options: "dot"', function () {
+                    expect(reporter.getReporterOptions(reporter.getOptions(options), 'mocha-junit-reporter')).to.be.deep.equal({
+                        id: 'mocha-junit-reporter',
+                        mochaFile: 'junit.xml'
+                    });
                 });
             });
         });
@@ -144,7 +172,7 @@ describe('lib/MultiReporters', function () {
             });
 
             runner.run(function (failureCount) {
-                expect(failureCount).to.be.equals(1);
+                expect(failureCount).to.equals(1);
 
                 // stats
                 expect(runner.stats).to.be.include({
@@ -156,14 +184,14 @@ describe('lib/MultiReporters', function () {
                 });
 
                 // suites
-                expect(runner.suite.title).to.be.equal('#multi-reporter');
+                expect(runner.suite.title).to.equal('#multi-reporter');
                 expect(runner.suite.tests).to.be.instanceof(Array);
                 expect(runner.suite.tests).to.have.length(2);
 
                 // test
                 var test = runner.suite.tests[1];
-                expect(test.title).to.be.equal('#test-2');
-                expect(test.state).to.be.equal('failed');
+                expect(test.title).to.equal('#test-2');
+                expect(test.state).to.equal('failed');
 
                 done();
             });
@@ -184,7 +212,7 @@ describe('lib/MultiReporters', function () {
             });
 
             runner.run(function (failureCount) {
-                expect(failureCount).to.be.equals(0);
+                expect(failureCount).to.equals(0);
 
                 // stats
                 expect(runner.stats).to.be.include({
@@ -203,7 +231,7 @@ describe('lib/MultiReporters', function () {
                 // test
                 var test = runner.suite.tests[0];
                 expect(test.title).to.be.equal('#test-1');
-                expect(test.pending).to.be.true;
+                expect(test.pending).to.equal(true);
 
                 done();
             });
