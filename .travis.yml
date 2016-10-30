@@ -2,12 +2,14 @@ after_success:
 - cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 language: node_js
 node_js:
-- '4.1'
-- '4.0'
+- '6.1'
+- '6'
+- '5'
+- '4'
 - '0.12'
 - '0.11'
 - '0.10'
-- iojs
+- 'iojs'
 sudo: false
 deploy:
   provider: npm
