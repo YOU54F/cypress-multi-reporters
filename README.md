@@ -171,7 +171,7 @@ $ cat xunit-custom.xml
 
 * Generate `tap` and `junit` reports. `
 
-To generate `junit` report, we install [mocha-junit-reporter](https://www.npmjs.com/package/mocha-junit-reporter).
+To generate `junit` report, we are using [mocha-junit-reporter](https://www.npmjs.com/package/mocha-junit-reporter).
 
 ```bash
 $ npm install mocha-junit-reporter
@@ -219,7 +219,7 @@ $ cat xunit-custom.xml
 
 The MIT License (MIT)
 
-Copyright(c) 2015 Stanley Ng
+Copyright(c) 2016 Stanley Ng
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
