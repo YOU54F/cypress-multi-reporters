@@ -169,6 +169,52 @@ $ cat xunit-custom.xml
 </testsuite>
 ```
 
+* Generate `tap` and `junit` reports. `
+
+To generate `junit` report, we install [mocha-junit-reporter](https://www.npmjs.com/package/mocha-junit-reporter).
+
+```bash
+$ npm install mocha-junit-reporter
+```
+```js
+// File: config.json
+{
+    "reporterEnabled": "mocha-junit-reporter",
+    "mochaJunitReporterReporterOptions": {
+	    "mochaFile": "junit-custom.xml"
+    }
+}
+```
+```bash
+$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+
+1..4
+ok 1 mocha-test 1 sample test 1.1
+ok 2 mocha-test 1 sample test 1.2
+ok 3 mocha-test 2 sample test 2.1
+ok 4 mocha-test 2 sample test 2.2 # SKIP -
+# tests 3
+# pass 3
+# fail 0
+
+$ cat xunit-custom.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.001" tests="4" failures="0" skipped="1">
+  <testsuite name="Root Suite" timestamp="2016-10-30T02:27:54" tests="0" failures="0" time="0">
+  </testsuite>
+  <testsuite name="mocha-test #1" timestamp="2016-10-30T02:27:54" tests="2" failures="0" time="0.001">
+    <testcase name="mocha-test #1 sample test #1.1" time="0.001" classname="sample test #1.1">
+    </testcase>
+    <testcase name="mocha-test #1 sample test #1.2" time="0" classname="sample test #1.2">
+    </testcase>
+  </testsuite>
+  <testsuite name="mocha-test #2" timestamp="2016-10-30T02:27:54" tests="2" failures="0" time="0">
+    <testcase name="mocha-test #2 sample test #2.1" time="0" classname="sample test #2.1">
+    </testcase>
+  </testsuite>
+</testsuites>
+```
+
 ## License
 
 The MIT License (MIT)
