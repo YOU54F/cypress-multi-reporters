@@ -169,7 +169,7 @@ $ cat xunit-custom.xml
 </testsuite>
 ```
 
-* Generate `tap` and `junit` reports. `
+* Generate `tap` and `junit` reports.
 
 To generate `junit` report, we are using [mocha-junit-reporter](https://www.npmjs.com/package/mocha-junit-reporter).
 
