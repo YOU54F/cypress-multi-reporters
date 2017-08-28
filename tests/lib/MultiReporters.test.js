@@ -44,6 +44,60 @@ describe('lib/MultiReporters', function () {
                 reporter = new mocha._reporter(runner, options);
             });
 
+            describe('#done (failures, fn)', function () {
+                var failures, fn;
+
+                beforeEach(function () {
+                    sinon.stub(console, 'error');
+                    failures = 2;
+                    fn = sinon.stub();
+                });
+
+                afterEach(function () {
+                    console.error.restore();
+                });
+
+                it('logs an error message to the console when no reporters have been registered', function() {
+                    reporter.done(failures, fn);
+
+                    expect(fn.callCount).to.equal(0);
+                    expect(console.error.callCount).to.equal(1);
+                    expect(console.error.firstCall.args).to.deep.equal(['Unable to invoke fn(failures) - no reporters were registered']);
+                });
+
+                it('executes fn(failures) after applying the done method on each reporter', function() {
+                    var reporterA = { done: sinon.stub().callsArg(1) };
+                    var reporterB = {};
+                    var reporterC = { done: sinon.stub().callsArg(1) };
+
+                    reporter._reporters = [reporterA, reporterB, reporterC];
+
+                    reporter.done(failures, fn);
+
+                    expect(reporterA.done.callCount).to.equal(1);
+                    expect(reporterA.done.firstCall.args[0]).to.equal(failures);
+                    expect(typeof reporterA.done.firstCall.args[1]).to.equal('function');
+
+                    expect(reporterC.done.callCount).to.equal(1);
+                    expect(reporterC.done.firstCall.args[0]).to.equal(failures);
+                    expect(typeof reporterC.done.firstCall.args[1]).to.equal('function');
+
+                    expect(fn.callCount).to.equal(1);
+                    expect(fn.calledAfter(reporterA.done)).to.be.true;
+                    expect(fn.calledAfter(reporterC.done)).to.be.true;
+                    expect(fn.firstCall.args).to.deep.equal([failures]);
+                });
+
+                it('executes fn(failures) when none of the registered reporters have a #done handlers', function () {
+                    reporter._reporters = [{}, {}];
+
+                    reporter.done(failures, fn);
+
+                    expect(fn.callCount).to.equal(1);
+                    expect(fn.firstCall.args).to.deep.equal([failures]);
+                });
+            });
+
             describe('#options (reporters - single)', function () {
                 it('return reporter options: "dot"', function () {
                     expect(reporter.getReporterOptions(reporter.getOptions(options), 'dot')).to.be.deep.equal({
