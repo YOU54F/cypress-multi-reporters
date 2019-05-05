@@ -1,6 +1,6 @@
 {
-  "name": "mocha-multi-reporters",
-  "version": "1.1.7",
+  "name": "cypress-multi-reporters",
+  "version": "1.1.8",
   "description": "Generate multiple mocha reports in a single mocha execution.",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,10 @@
     "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*"
   },
   "author": "Stanley Ng <stanleyhlng77-dev@yahoo.com.hk",
+  "contributor": "Yousaf Nabi <yousafn@gmail.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stanleyhlng/mocha-multi-reporters"
+    "url": "https://github.com/you54f/cypress-multi-reporters"
   },
   "license": "MIT",
   "dependencies": {
