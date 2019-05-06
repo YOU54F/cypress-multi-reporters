@@ -1,6 +1,6 @@
 {
   "name": "cypress-multi-reporters",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Generate multiple mocha reports in a single mocha execution.",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "sinon": "^1.17.6"
   },
   "peerDependencies": {
-    "mocha": "^3.1.2"
+    "mocha": ">=3.1.2"
   },
   "keywords": [
     "mocha",
