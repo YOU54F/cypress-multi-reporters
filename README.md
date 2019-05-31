@@ -3,12 +3,13 @@ cypress-multi-reporters
 
 Generate multiple mocha reports in a single mocha execution.
 
-[![npm version](https://img.shields.io/npm/v/cypress-multi-reporters.svg?style=flat-square)](https://www.npmjs.com/package/cypress-multi-reporters)
-[![StyleCI](https://styleci.io/repos/48823069/shield)](https://styleci.io/repos/48823069)
+[![npm version](https://img.shields.io/npm/v/cypress-multi-reporters.svg)]
+![npm](https://img.shields.io/npm/dm/cypress-multi-reporters.svg)
 [![Build Status](https://travis-ci.org/you54f/cypress-multi-reporters.svg)](https://travis-ci.org/you54f/cypress-multi-reporters)
 [![Coverage Status](https://coveralls.io/repos/you54f/cypress-multi-reporters/badge.svg?branch=master&service=github)](https://coveralls.io/github/you54f/cypress-multi-reporters?branch=master)
 [![Dependency Status](https://img.shields.io/david/you54f/cypress-multi-reporters.svg?style=flat-square)](https://david-dm.org/you54f/cypress-multi-reporters)
 [![devDependency Status](https://img.shields.io/david/dev/you54f/cypress-multi-reporters.svg?style=flat-square)](https://david-dm.org/stanleyhlng/cypress-multi-reporters#info=devDependencies)
+
 
 ## Install
 
