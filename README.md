@@ -18,7 +18,7 @@ npm install cypress-multi-reporters --save-dev
 ```
 
 ## Demo
-https://github.com/stanleyhlng/cypress-multi-reporters-demo
+https://github.com/stanleyhlng/mocha-multi-reporters-demo
 
 ## Usage
 
