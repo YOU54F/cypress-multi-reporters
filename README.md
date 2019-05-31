@@ -1,30 +1,31 @@
-mocha-multi-reporters
+cypress-multi-reporters
 ===
 
 Generate multiple mocha reports in a single mocha execution.
 
-[![npm version](https://img.shields.io/npm/v/mocha-multi-reporters.svg?style=flat-square)](https://www.npmjs.com/package/mocha-multi-reporters)
-[![StyleCI](https://styleci.io/repos/48823069/shield)](https://styleci.io/repos/48823069)
-[![Build Status](https://travis-ci.org/stanleyhlng/mocha-multi-reporters.svg)](https://travis-ci.org/stanleyhlng/mocha-multi-reporters)
-[![Coverage Status](https://coveralls.io/repos/stanleyhlng/mocha-multi-reporters/badge.svg?branch=master&service=github)](https://coveralls.io/github/stanleyhlng/mocha-multi-reporters?branch=master)
-[![Dependency Status](https://img.shields.io/david/stanleyhlng/mocha-multi-reporters.svg?style=flat-square)](https://david-dm.org/stanleyhlng/mocha-multi-reporters)
-[![devDependency Status](https://img.shields.io/david/dev/stanleyhlng/mocha-multi-reporters.svg?style=flat-square)](https://david-dm.org/stanleyhlng/mocha-multi-reporters#info=devDependencies)
+[![npm version](https://img.shields.io/npm/v/cypress-multi-reporters.svg)]
+[![npm](https://img.shields.io/npm/dm/cypress-multi-reporters.svg)
+[![Build Status](https://travis-ci.org/you54f/cypress-multi-reporters.svg)](https://travis-ci.org/you54f/cypress-multi-reporters)
+[![Coverage Status](https://coveralls.io/repos/you54f/cypress-multi-reporters/badge.svg?branch=master&service=github)](https://coveralls.io/github/you54f/cypress-multi-reporters?branch=master)
+[![Dependency Status](https://img.shields.io/david/you54f/cypress-multi-reporters.svg?style=flat-square)](https://david-dm.org/you54f/cypress-multi-reporters)
+[![devDependency Status](https://img.shields.io/david/dev/you54f/cypress-multi-reporters.svg?style=flat-square)](https://david-dm.org/stanleyhlng/cypress-multi-reporters#info=devDependencies)
+
 
 ## Install
 
 ```
-npm install mocha-multi-reporters --save-dev
+npm install cypress-multi-reporters --save-dev
 ```
 
 ## Demo
-https://github.com/stanleyhlng/mocha-multi-reporters-demo
+https://github.com/stanleyhlng/cypress-multi-reporters-demo
 
 ## Usage
 
 ### Basic
 
 ```bash
-$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters
+$ ./node_modules/.bin/mocha --reporter cypress-multi-reporters
   mocha-test #1
     ✓ sample test #1.1
     ✓ sample test #1.2
@@ -57,7 +58,7 @@ $ ./node_modules/.bin/mocha --reporter mocha-multi-reporters
 ```
 
 ```bash
-$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+$ ./node_modules/.bin/mocha --reporter cypress-multi-reporters --reporter-options configFile=config.json
   mocha-test #1
     ✓ sample test #1.1
     ✓ sample test #1.2
@@ -149,7 +150,7 @@ $ ./node_modules/.bin/mocha --reporter mocha-multi-reporters --reporter-options 
 }
 ```
 ```bash
-$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+$ ./node_modules/.bin/mocha --reporter cypress-multi-reporters --reporter-options configFile=config.json
 
 1..4
 ok 1 mocha-test 1 sample test 1.1
@@ -186,7 +187,7 @@ $ npm install mocha-junit-reporter
 }
 ```
 ```bash
-$ ./node_modules/.bin/mocha --reporter mocha-multi-reporters --reporter-options configFile=config.json
+$ ./node_modules/.bin/mocha --reporter cypress-multi-reporters --reporter-options configFile=config.json
 
 1..4
 ok 1 mocha-test 1 sample test 1.1
@@ -217,11 +218,11 @@ $ cat xunit-custom.xml
 
 * When calling Mocha programmatically
 
-Note that when Mocha is called programmatically, it is passed an options object when created.  This object is usually derived from a config file that your mocha test runner reads prior to instantiation.  This is the object that must contain a key `reporter` with a value of `mocha-multi-reporters` for this plugin to be used.  You can also pass the key `reporterOptions` with a value of any of the above listed config files (including the `reporterEnabled` subkey and any other plugin configuration information.)  This removes the requirement to have an intermediate configuration file specifically for the multireporter configuration.
+Note that when Mocha is called programmatically, it is passed an options object when created.  This object is usually derived from a config file that your mocha test runner reads prior to instantiation.  This is the object that must contain a key `reporter` with a value of `cypress-multi-reporters` for this plugin to be used.  You can also pass the key `reporterOptions` with a value of any of the above listed config files (including the `reporterEnabled` subkey and any other plugin configuration information.)  This removes the requirement to have an intermediate configuration file specifically for the multireporter configuration.
 
 ```js
 var mocha = new Mocha({
-      reporter: "mocha-multi-reporters",
+      reporter: "cypress-multi-reporters",
       timeout: config.testTimeout || 60000,
       slow: config.slow || 10000,
       reporterOptions: {
