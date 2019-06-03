@@ -242,6 +242,7 @@ Note that it will first check if reporterOptions contains a `configFile` key, an
 
 The MIT License (MIT)
 
+Copyright(c) 2019 Yousaf Nabi
 Copyright(c) 2017 Stanley Ng
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
