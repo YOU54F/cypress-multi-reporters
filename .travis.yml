@@ -31,6 +31,7 @@ deploy:
       tags: true
       repo: YOU54F/cypress-multi-reporters
       branch: master
+      node: "8"
   - provider: script
     skip_cleanup: true
     script: ./scripts/publish.sh
