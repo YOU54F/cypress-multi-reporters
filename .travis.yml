@@ -30,12 +30,12 @@ deploy:
     on:
       tags: true
       repo: YOU54F/cypress-multi-reporters
-      branch: master
+      branch: automatedRelease
       node: "8"
   - provider: script
     skip_cleanup: true
     script: ./scripts/publish.sh
     on:
       tags: true
-      branch: master
+      branch: automatedRelease
       node: "8"
