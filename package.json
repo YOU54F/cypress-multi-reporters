@@ -20,7 +20,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "chai": "3.5.0",
+    "chai": "4.2.0",
     "coveralls": "2.13.3",
     "eslint": "3.19.0",
     "eslint-config-defaults": "9.0.0",
