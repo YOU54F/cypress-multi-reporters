@@ -19,7 +19,7 @@ after_success:
 - cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
 - npm prune --production
-- tar -czvf cypress-multi-reporters.tar.gz package.json index.js run.js LICENSE README.md CHANGELOG.md
+- tar -czvf cypress-multi-reporters.tar.gz package.json index.js lib/* config.json LICENSE README.md CHANGELOG.md
 - npm run deploy:prepare
 deploy:
   - provider: releases

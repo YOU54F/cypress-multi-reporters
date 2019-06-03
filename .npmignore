@@ -11,3 +11,4 @@ tests
 yarn.lock
 xunit.xml
 commitlint.config.js
+.nyc_output/
