@@ -1,12 +1,14 @@
 {
   "name": "cypress-multi-reporters",
-  "version": "1.1.12",
+  "version": "1.1.21",
   "description": "Generate multiple mocha reports in a single mocha execution.",
   "main": "index.js",
   "scripts": {
     "devtest": "jenkins-mocha --no-coverage --timeout 5000 tests/**/*.test.js*",
     "lint": "eslint --ext .js .",
-    "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*"
+    "test": "JENKINS_MOCHA_COVERAGE=true jenkins-mocha --timeout 5000 tests/**/*.test.js*",
+    "deploy:prepare": "./scripts/create_npmrc_file.sh",
+    "release": "standard-version"
   },
   "author": "Stanley Ng <stanleyhlng77-dev@yahoo.com.hk",
   "contributor": "Yousaf Nabi <yousafn@gmail.com",
@@ -20,15 +22,18 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "@commitlint/cli": "8.0.0",
+    "@commitlint/config-conventional": "8.0.0",
     "chai": "4.2.0",
-    "coveralls": "2.13.3",
-    "eslint": "3.19.0",
+    "coveralls": "3.0.3",
+    "eslint": "5.16.0",
     "eslint-config-defaults": "9.0.0",
-    "jenkins-mocha": "2.6.0",
+    "husky": "2.3.0",
+    "jenkins-mocha": "7.0.0",
     "mocha-lcov-reporter": "1.3.0",
-    "pre-commit": "1.2.2",
     "root-require": "0.3.1",
-    "sinon": "1.17.7"
+    "sinon": "7.3.2",
+    "standard-version": "6.0.1"
   },
   "peerDependencies": {
     "mocha": ">=3.1.2"
@@ -37,11 +42,14 @@
     "mocha",
     "reporter"
   ],
-  "pre-commit": [
-    "lint",
-    "test"
-  ],
   "eslintConfig": {
     "extends": "defaults"
+  },
+  "husky": {
+    "hooks": {
+      "lint": "lint",
+      "test": "test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

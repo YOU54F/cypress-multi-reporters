@@ -1,4 +1,5 @@
 node_modules
+scripts
 
 .github
 artifacts
@@ -8,3 +9,7 @@ tests
 .gitignore
 .travis.yml
 yarn.lock
+xunit.xml
+commitlint.config.js
+.nyc_output/
+cypress-multi-reporters.tar.gz
