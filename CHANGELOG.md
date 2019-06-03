@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.15](https://github.com/you54f/cypress-multi-reporters/compare/v1.1.14...v1.1.15) (2019-06-03)
+
+
+### Bug Fixes
+
+* update all the deps ([f8cd4f8](https://github.com/you54f/cypress-multi-reporters/commit/f8cd4f8))
+
+
+
 ### [1.1.14](https://github.com/you54f/cypress-multi-reporters/compare/v1.1.13...v1.1.14) (2019-06-03)
 
 
