@@ -1,15 +1,40 @@
-after_success:
-- cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 language: node_js
 node_js:
-- 'node'
-- 'lts/*'
+- node
+- lts/*
 - '8'
 - '7'
 - '6'
-sudo: false
+os:
+- linux
+matrix:
+  fast_finish: true
+cache: yarn
+env:
+  global:
+  - secure: AwXSS77AHxvNYAlLW9A5nytnG5ZZ8Xgxu7r1YRh8d54d6dDiu5eGIEYGtSIvp1fpRtTcgczyCLov6EoyK0WmF8PFD7VEE8xz9EBOFG6bVhXKFli8U29Y4OQ2XDkASYsrRrgaGHiRWEDPCBfVgubNp2YIkxyfPxzfpeqLeidCIzMsKXzJeJnEV/is3mv+hBgYgtbOtx9vAc8f4sEsiHG8Hc/IhG+b/BRevj0yaAup6JmOtRTok3WOIVNnx5c3beVmZJalkJK0/N8C4pPOqghL+XkLYw8xZPhH7vEGorS5ZADCX8mi7WgNTneGSrrIwU66kQb1qvTOKXH88OrTecRkaiKcWNbwrodb5ZRqVOqreNa371JAx1pNQXhqLuFAglriEe/J2+5thlO9QlTtVBYVBLE14YjsQF1YHXVZP2wztnpnKQgAi1h55dGfmaaGdwor56+GEEBWZPeo4xb35O/087QqbJdh9XG+SuyXyib9HpaqLRwn6Bl5J/byWuuwYSkKnnzblG1JlCPnZepeKhN2yAY3nk+r5lvLtLFCgnm2Y6VD0wU9AtEjizaoWVBgV0jY576kvp2cOUh9Xhn1DtTHAOdgX0H5HZ8NJPrvNNIuMwKgzz73bTd91VRs7RkBmHnX5jxbCXjgPl+77Tu7Q/9AXE5+Oxo9nPzFIuj3EKX5R0o=
+install: yarn install --ignore-engines
+script: ./scripts/build.sh
+after_success:
+- cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+before_deploy:
+- npm prune --production
+- tar -czvf cypress-multi-reporters.tar.gz package.json index.js run.js LICENSE README.md CHANGELOG.md
+- npm run deploy:prepare
 deploy:
-  provider: npm
-  email: stanleyhlng77-dev@yahoo.com.hk
-  api_key:
-    secure: os3PhiyAVCtZw0rrFIl06LZVVCaifosZrMnjJxRcnjEjdqpybsQUdjWxj3JMIIC0sjrQmk4NvMCbgw23zP4BemsGcPelzeFH/fx6nu9nSBYNx9Bq2cNBP4+wvFgdTLyphzk5z24UZ3MlJWpb7xXR6mn76k5knvH5WS67hdZ8EWMaQOPWiQq57sSI/hautBeQpwdU0+vzXdf6gWDK7bCuGAYMvjLRa6JIU242GuzS1vPrdjatfXEJmot6PtBLt042T2v56ijw1eAHc3Z9AxN0t8FySZd7up/YsQcQvOXrWShmp2yt1nO19WGozEO1t0XDub19Rx7jNwOv7LLKPJbD9gkjZ/LlTxZuWjj8KJxWt45Hn+GWEueyqsDdRSH2ZuPDFpRza4V2E5SjuP8FO0+uQlb2qnSFH/psWwK/dikjvbqaAE6vZbel0xKzxg54n1NIni/olpWh/iiUB3I9o0w/UM/yXN8rh4CaYwyW8dOAql3dBhW42r+guFjXb6YfPq+zEbYhNjBLFk9hEV92qpCJ4xH+noNmszrO5Ybgp+AQDtxqIfsKX+841T1Ca401xPpYuPHGRe9Bmz96P/HmFOE8iXzQPwZMridZkTocwfoZjUxsFkxz3JJJ+vNwh7M7OmYqoTLSCUyX8RPqItPUmmBGnw0gYtGBQtgt3kHGlbOTR3c=
+  - provider: releases
+    api_key:
+      secure: JAHGDbSoCbAhxW51cnPjnn4RN9dXdEhA5AmnszBOov+l7Y69HS9005YY/GHwqC491zQMWfNAG72/TyaZVzXReaBlzUGEK9ELmPakizdiiQ/GJmKm3v6GSsiXW4YayzoxFPetWTOUYail9ikJELGteZkkLB8TlTTzyfBN0+RBdkUKdYD4pOV7kQUCFaRQ4q6A1/HHcdsR568bLCcPgs94XIzFCVlbNFMzOvlv6z6vKcYMrkIa333fEXGHsbg+JKNHfc9/vX0l/uJwOIN15AvPvoiqZrAXVCz2CwnZR7kklw+1HjTd1Q2MVCFd5cNfO5Osaf18eNOu2AxmsnVwtgqplIdaSfrOWqbIiK7htz54T0EAHAa7/BcmRQYWO+SgK1wMOdEMZZg90TeMEfNAThnbwRHenaynUX8Lq39D+oxCO1Fm91iLfeGfz6LVaqlormWsa3EhW3penyrng1Eqq1H2awDXlOJgJF7W6mJpBWdVnP3uJeGpT67JXUnc9Oz/0rupegfx/PBtJnctrFLYfwoTuvD4wTqSE62T6L+7KJlHTaoeQvVw1fYbFkbU/xtPfvRfUiytYSaXeSwvCb6edT6F13YeqhsrDG0L8Rq4ZTsVqnd0QMpmVOQZqUzgr2HJpnkhyydkif1kX/THWMYPB6wBpW/ZFpnd3O7qX42rfbhbwh8=
+    file: cypress-multi-reporters.tar.gz
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: YOU54F/cypress-multi-reporters
+      branch: master
+  - provider: script
+    skip_cleanup: true
+    script: ./scripts/publish.sh
+    on:
+      tags: true
+      branch: master
+      node: "8"
