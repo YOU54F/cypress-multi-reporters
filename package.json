@@ -25,7 +25,7 @@
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
     "chai": "4.2.0",
-    "coveralls": "3.0.3",
+    "coveralls": "3.0.4",
     "eslint": "5.16.0",
     "eslint-config-defaults": "9.0.0",
     "husky": "2.4.0",
