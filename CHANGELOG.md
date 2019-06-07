@@ -7,8 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* make compatible with mocha 6+ and earlier versions ([b8db10c](https://github.com/you54f/cypress-multi-reporters/commit/b8db10c))
-
+* check reporter fix, by @cacaocake ([1dc3c9](https://github.com/you54f/cypress-multi-reporters/commit/1dc3c9))
 
 
 ### [1.1.21](https://github.com/you54f/cypress-multi-reporters/compare/v1.1.20...v1.1.21) (2019-06-03)
