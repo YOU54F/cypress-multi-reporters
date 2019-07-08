@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/you54f/cypress-multi-reporters/compare/v1.1.23...v1.2.0) (2019-07-08)
+
+
+### Features
+
+* **options:** add options in rc file ([#14](https://github.com/you54f/cypress-multi-reporters/issues/14)) ([5f633ec](https://github.com/you54f/cypress-multi-reporters/commit/5f633ec))
+
+
+
 ### [1.1.23](https://github.com/you54f/cypress-multi-reporters/compare/v1.1.22...v1.1.23) (2019-07-08)
 
 
