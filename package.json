@@ -22,8 +22,8 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.3.3",
-    "@commitlint/config-conventional": "8.3.3",
+    "@commitlint/cli": "8.3.4",
+    "@commitlint/config-conventional": "8.3.4",
     "chai": "4.2.0",
     "coveralls": "3.0.9",
     "eslint": "5.16.0",
