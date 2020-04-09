@@ -28,7 +28,7 @@
     "coveralls": "3.0.11",
     "eslint": "5.16.0",
     "eslint-config-defaults": "9.0.0",
-    "husky": "4.2.3",
+    "husky": "4.2.4",
     "jenkins-mocha": "8.0.0",
     "mocha-lcov-reporter": "1.3.0",
     "root-require": "0.3.1",
