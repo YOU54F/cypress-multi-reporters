@@ -1,7 +1,7 @@
 'use strict';
 
-var mocha = require('mocha');
-var Base = mocha.reporters.Base;
+const mocha = require('mocha');
+const {Base} = mocha.reporters;
 
 /**
  * This is a project-local custom reporter which is used as a stub in tests

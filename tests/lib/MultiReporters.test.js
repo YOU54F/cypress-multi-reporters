@@ -1,13 +1,13 @@
 'use strict';
 
-var Mocha = require('mocha');
-var sinon = require('sinon');
-var Suite = Mocha.Suite;
-var Runner = Mocha.Runner;
-var Test = Mocha.Test;
+const Mocha = require('mocha');
+const sinon = require('sinon');
+const {Suite} = Mocha;
+const {Runner} = Mocha;
+const {Test} = Mocha;
 
 describe('lib/MultiReporters', function () {
-    var MultiReporters;
+    let MultiReporters;
 
     before(function () {
         MultiReporters = require('../../lib/MultiReporters');
@@ -22,11 +22,11 @@ describe('lib/MultiReporters', function () {
     });
 
     describe('#instance', function () {
-        var mocha;
-        var suite;
-        var runner;
-        var reporter;
-        var options;
+        let mocha;
+        let suite;
+        let runner;
+        let reporter;
+        let options;
 
         describe('#internal', function () {
             beforeEach(function () {
@@ -45,7 +45,7 @@ describe('lib/MultiReporters', function () {
             });
 
             describe('#done (failures, fn)', function () {
-                var failures, fn;
+                let failures, fn;
 
                 beforeEach(function () {
                     sinon.stub(console, 'error');
@@ -66,9 +66,9 @@ describe('lib/MultiReporters', function () {
                 });
 
                 it('executes fn(failures) after applying the done method on each reporter', function() {
-                    var reporterA = { done: sinon.stub().callsArg(1) };
-                    var reporterB = {};
-                    var reporterC = { done: sinon.stub().callsArg(1) };
+                    const reporterA = { done: sinon.stub().callsArg(1) };
+                    const reporterB = {};
+                    const reporterC = { done: sinon.stub().callsArg(1) };
 
                     reporter._reporters = [reporterA, reporterB, reporterC];
 
@@ -88,7 +88,7 @@ describe('lib/MultiReporters', function () {
                     expect(fn.firstCall.args).to.deep.equal([failures]);
                 });
 
-                it('executes fn(failures) when none of the registered reporters have a #done handlers', function () {
+                it('executes fn(failures) when none of the registered reporters have a #done handler', function () {
                     reporter._reporters = [{}, {}];
 
                     reporter.done(failures, fn);
@@ -199,7 +199,7 @@ describe('lib/MultiReporters', function () {
         });
 
         describe('#external', function () {
-            var checkReporterOptions = function (options) {
+            const checkReporterOptions = function (options) {
                 expect(reporter.getReporterOptions(reporter.getOptions(options), 'mocha-junit-reporter')).to.be.deep.equal({
                     id: 'mocha-junit-reporter',
                     mochaFile: 'junit.xml'
@@ -295,7 +295,7 @@ describe('lib/MultiReporters', function () {
         });
 
         describe('#exception', function () {
-            var err;
+            let err;
             beforeEach(function () {
                 options = {
                     execute: false,
@@ -329,11 +329,11 @@ describe('lib/MultiReporters', function () {
     });
 
     describe('#test', function () {
-        var suite;
-        var runner;
+        let suite;
+        let runner;
 
         beforeEach(function () {
-            var mocha = new Mocha({
+            const mocha = new Mocha({
                 reporter: MultiReporters
             });
             suite = new Suite('#multi-reporter', 'root');
@@ -342,7 +342,7 @@ describe('lib/MultiReporters', function () {
         });
 
         it('should have 1 test failure', function (done) {
-            var tests = [
+            const tests = [
                 {
                     title: '#test-1',
                     state: 'passed'
@@ -382,7 +382,7 @@ describe('lib/MultiReporters', function () {
                 expect(runner.suite.tests).to.have.length(2);
 
                 // test
-                var test = runner.suite.tests[1];
+                const [, test] = runner.suite.tests;
                 expect(test.title).to.equal('#test-2');
                 expect(test.state).to.equal('failed');
 
@@ -391,7 +391,7 @@ describe('lib/MultiReporters', function () {
         });
 
         it('should have 1 test pending', function (done) {
-            var tests = [
+            const tests = [
                 {
                     title: '#test-1'
                 },
@@ -422,7 +422,7 @@ describe('lib/MultiReporters', function () {
                 expect(runner.suite.tests).to.have.length(2);
 
                 // test
-                var test = runner.suite.tests[0];
+                const [test] = runner.suite.tests;
                 expect(test.title).to.be.equal('#test-1');
                 expect(test.pending).to.equal(true);
 
