@@ -12,4 +12,5 @@ yarn.lock
 xunit.xml
 commitlint.config.js
 .nyc_output/
+coverage
 cypress-multi-reporters.tar.gz

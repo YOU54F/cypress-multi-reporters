@@ -1,6 +1,4 @@
 /*global require, describe, it, before, beforeEach */
-var _require = require('root-require');
-var expect = require('chai').expect;
 var Mocha = require('mocha');
 var sinon = require('sinon');
 var Suite = Mocha.Suite;
@@ -11,7 +9,7 @@ describe('lib/MultiReporters', function () {
     var MultiReporters;
 
     before(function () {
-        MultiReporters = _require('lib/MultiReporters');
+        MultiReporters = require('../../lib/MultiReporters');
     });
 
     describe('#static', function () {
