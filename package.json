@@ -11,7 +11,7 @@
   },
   "scripts": {
     "devtest": "nyc mocha --require chai/register-expect --no-coverage --timeout 5000 tests/**/*.test.js*",
-    "lint": "eslint --ext .js .",
+    "lint": "eslint .",
     "test": "nyc mocha --require chai/register-expect --timeout 5000 tests/**/*.test.js*",
     "deploy:prepare": "./scripts/create_npmrc_file.sh",
     "release": "standard-version"
