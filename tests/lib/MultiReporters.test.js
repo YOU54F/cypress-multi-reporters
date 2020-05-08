@@ -179,6 +179,23 @@ describe('lib/MultiReporters', function () {
                     });
                 });
             });
+
+            describe('#custom-erring-internal-reporter', function () {
+                beforeEach(function() {
+                    options = {
+                        execute: true,
+                        reporterOptions: {
+                            configFile: 'tests/custom-erring-internal-config.json'
+                        }
+                    };
+                });
+
+                it('catches error for "custom-erring-internal-reporter"', function () {
+                    expect(function () {
+                        reporter = new mocha._reporter(runner, options);
+                    }).to.not.throw(Error);
+                });
+            });
         });
 
         describe('#external', function () {
@@ -232,6 +249,47 @@ describe('lib/MultiReporters', function () {
                     it('commonjs: return reporter options: "dot"', function () {
                         checkReporterOptions(options);
                     });
+                });
+            });
+
+            describe('erring (json)', function() {
+                beforeEach(function () {
+                    mocha = new Mocha({
+                        reporter: MultiReporters
+                    });
+                    suite = new Suite('#external-multi-reporter', 'root');
+                    runner = new Runner(suite);
+                    options = {
+                        execute: true,
+                        reporterOptions: {
+                            configFile: 'tests/custom-bad-config.json'
+                        }
+                    };
+                });
+
+                describe('#options (external reporters w/ json - single)', function () {
+                    it('catches errors with bad reporter name', function () {
+                        expect(function () {
+                            reporter = new mocha._reporter(runner, options);
+                        }).to.not.throw(Error);
+                    });
+                });
+            });
+
+            describe('#custom-erring-external-reporter', function () {
+                beforeEach(function() {
+                    options = {
+                        execute: true,
+                        reporterOptions: {
+                            configFile: 'tests/custom-erring-external-config.json'
+                        }
+                    };
+                });
+
+                it('catches error for "custom-erring-external-reporter"', function () {
+                    expect(function () {
+                        reporter = new mocha._reporter(runner, options);
+                    }).to.not.throw(Error);
                 });
             });
         });
