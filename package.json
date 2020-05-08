@@ -17,11 +17,19 @@
     "release": "standard-version"
   },
   "author": "Stanley Ng <stanleyhlng77-dev@yahoo.com.hk",
-  "contributor": "Yousaf Nabi <yousafn@gmail.com",
+  "contributors": [
+      "Yousaf Nabi <yousafn@gmail.com",
+      "Brett Zamir"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/you54f/cypress-multi-reporters"
   },
+  "engines": {
+    "node": ">=0.1.14"
+  },
+  "bugs": "https://github.com/you54f/cypress-multi-reporters/issues",
+  "homepage": "https://github.com/you54f/cypress-multi-reporters",
   "license": "MIT",
   "dependencies": {
     "debug": "^4.1.1",
