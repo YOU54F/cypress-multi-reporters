@@ -1,5 +1,4 @@
-cypress-multi-reporters
-===
+## cypress-multi-reporters
 
 Generate multiple mocha reports in a single mocha execution.
 
