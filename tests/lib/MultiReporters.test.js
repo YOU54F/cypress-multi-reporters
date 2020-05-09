@@ -1,6 +1,5 @@
-/*global require, describe, it, before, beforeEach */
-var _require = require('root-require');
-var expect = require('chai').expect;
+'use strict';
+
 var Mocha = require('mocha');
 var sinon = require('sinon');
 var Suite = Mocha.Suite;
@@ -11,7 +10,7 @@ describe('lib/MultiReporters', function () {
     var MultiReporters;
 
     before(function () {
-        MultiReporters = _require('lib/MultiReporters');
+        MultiReporters = require('../../lib/MultiReporters');
     });
 
     describe('#static', function () {
@@ -240,12 +239,12 @@ describe('lib/MultiReporters', function () {
         describe('#exception', function () {
             var err;
             beforeEach(function () {
-              options = {
-                  execute: false,
-                  reporterOptions: {
-                      configFile: 'tests/custom-external-config.json'
-                  }
-              };
+                options = {
+                    execute: false,
+                    reporterOptions: {
+                        configFile: 'tests/custom-external-config.json'
+                    }
+                };
 
                 err = new Error('JSON.parse error!');
                 sinon.stub(JSON, 'parse').throws(err);

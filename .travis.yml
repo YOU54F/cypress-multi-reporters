@@ -2,9 +2,9 @@ language: node_js
 node_js:
 - node
 - lts/*
-- '8'
-- '7'
-- '6'
+- 14
+- 12
+- 10
 os:
 - linux
 matrix:
@@ -31,11 +31,11 @@ deploy:
       tags: true
       repo: YOU54F/cypress-multi-reporters
       branch: automatedRelease
-      node: "8"
+      node: "10"
   - provider: script
     skip_cleanup: true
     script: ./scripts/publish.sh
     on:
       tags: true
       branch: automatedRelease
-      node: "8"
+      node: "12"

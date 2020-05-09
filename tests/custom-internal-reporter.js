@@ -1,3 +1,5 @@
+'use strict';
+
 var mocha = require('mocha');
 var Base = mocha.reporters.Base;
 
@@ -6,7 +8,7 @@ var Base = mocha.reporters.Base;
  * to verify if loading reporters from a path (absolute or relative) is successful
  */
 function CustomReporterStub(runner) {
-  Base.call(this, runner);
+    Base.call(this, runner);
 }
 
 module.exports = CustomReporterStub;
