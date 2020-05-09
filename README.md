@@ -45,7 +45,7 @@ $ ./node_modules/.bin/mocha --reporter cypress-multi-reporters
 </testsuite>
 ```
 
-### Advanced
+### Configuring reporters
 
 * Generate `spec` and `json` reports.
 
@@ -215,7 +215,34 @@ $ cat xunit-custom.xml
 </testsuites>
 ```
 
-* When calling Mocha programmatically
+### `cmrOutput` option
+
+This option lets you dynamically replace the output files of reporter options.
+
+In your Mocha `--reporterOptions`, specify `cmrOutput` with a plug-sign-separated
+list of the reporter name, the property on that reporter's options to have replaced, and the dynamic ID you would like substituted. If you need multiple reporters
+to have dynamic output, add additional plus-sign-separated lists separated by colons.
+
+```sh
+mocha --reporter cypress-multi-reporters --reporterOptions configFile=cypress-multi-reporters.json,cmrOutput=@mochajs/json-file-reporter+output+specialID tests
+```
+
+```js
+// cypress-multi-reporters.json
+{
+  "mochajsJsonFileReporterReporterOptions": {
+    "output": "tests/results/file-{id}.json"
+  },
+  "reporterEnabled": "spec, @mochajs/json-file-reporter"
+}
+```
+
+This will produce an `output` for `@mochajs/json-file-reporter`
+`reporterOptions` with the value:
+
+> tests/results/file-specialID.json
+
+### Programmatic
 
 Note that when Mocha is called programmatically, it is passed an options object when created.  This object is usually derived from a config file that your mocha test runner reads prior to instantiation.  This is the object that must contain a key `reporter` with a value of `cypress-multi-reporters` for this plugin to be used.  You can also pass the key `reporterOptions` with a value of any of the above listed config files (including the `reporterEnabled` subkey and any other plugin configuration information.)  This removes the requirement to have an intermediate configuration file specifically for the multireporter configuration.
 
