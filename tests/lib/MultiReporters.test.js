@@ -198,6 +198,56 @@ describe('lib/MultiReporters', function () {
             });
         });
 
+        describe('#internal (with dynamic output)', function () {
+            beforeEach(function () {
+                mocha = new Mocha({
+                    reporter: MultiReporters
+                });
+                suite = new Suite('#internal-multi-reporter', 'root');
+                runner = new Runner(suite);
+                options = {
+                    execute: false,
+                    reporterOptions: {
+                        configFile: 'tests/custom-internal-config.json'
+                    }
+                };
+                reporter = new mocha._reporter(runner, options);
+            });
+            it('return reporter options: "customID" (dynamic output)', function () {
+                expect(reporter.getReporterOptions(reporter.getOptions({
+                    reporterOptions: {
+                        cmrOutput: 'tests/custom-internal-reporter+output+customName',
+                        configFile: 'tests/custom-internal-dynamic-output-config.json'
+                    }
+                }), 'tests/custom-internal-reporter')).to.be.deep.equal({
+                    id: 'customID',
+                    output: 'artifacts/test/custom-internal-customName.xml'
+                });
+            });
+
+            it('ignores non-matching reporter options with dynamic output', function () {
+                expect(reporter.getReporterOptions(reporter.getOptions({
+                    reporterOptions: {
+                        cmrOutput: 'tests/custom-internal-reporter+output+customName',
+                        configFile: 'tests/custom-internal-dynamic-output-config.json'
+                    }
+                }), 'xunit')).to.be.deep.equal({
+                    id: 'xunit',
+                    output: 'artifacts/test/custom-xunit.xml'
+                });
+
+                expect(reporter.getReporterOptions(reporter.getOptions({
+                    reporterOptions: {
+                        cmrOutput: 'tests/custom-internal-reporter+output+customName',
+                        configFile: 'tests/custom-internal-dynamic-output-config.json'
+                    }
+                }), 'mocha-junit-reporter')).to.be.deep.equal({
+                    id: 'mocha-junit-reporter',
+                    mochaFile: 'junit.xml'
+                });
+            });
+        });
+
         describe('#external', function () {
             const checkReporterOptions = function (options) {
                 expect(reporter.getReporterOptions(reporter.getOptions(options), 'mocha-junit-reporter')).to.be.deep.equal({
