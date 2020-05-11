@@ -220,7 +220,7 @@ $ cat xunit-custom.xml
 Note that when Mocha is called programmatically, it is passed an options object when created.  This object is usually derived from a config file that your mocha test runner reads prior to instantiation.  This is the object that must contain a key `reporter` with a value of `cypress-multi-reporters` for this plugin to be used.  You can also pass the key `reporterOptions` with a value of any of the above listed config files (including the `reporterEnabled` subkey and any other plugin configuration information.)  This removes the requirement to have an intermediate configuration file specifically for the multireporter configuration.
 
 ```js
-var mocha = new Mocha({
+const mocha = new Mocha({
       reporter: "cypress-multi-reporters",
       timeout: config.testTimeout || 60000,
       slow: config.slow || 10000,
