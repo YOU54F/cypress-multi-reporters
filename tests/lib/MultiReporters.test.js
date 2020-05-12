@@ -180,6 +180,24 @@ describe('lib/MultiReporters', function () {
                 });
             });
 
+            describe('#custom-internal-reporter (array config)', function () {
+                beforeEach(function() {
+                    options = {
+                        execute: true,
+                        reporterOptions: {
+                            configFile: 'tests/custom-internal-config-array.json'
+                        }
+                    };
+                    reporter = new mocha._reporter(runner, options);
+                });
+
+                it('return default options for "custom-internal-reporter"', function () {
+                    expect(reporter.getReporterOptions(reporter.getOptions(options), 'custom-internal-reporter')).to.be.deep.equal({
+                        id: 'default',
+                    });
+                });
+            });
+
             describe('#custom-erring-internal-reporter', function () {
                 beforeEach(function() {
                     options = {
@@ -239,6 +257,16 @@ describe('lib/MultiReporters', function () {
                 expect(reporter.getReporterOptions(reporter.getOptions({
                     reporterOptions: {
                         cmrOutput: 'tests/custom-internal-reporter+output+customName',
+                        configFile: 'tests/custom-internal-dynamic-output-config.json'
+                    }
+                }), 'mocha-junit-reporter')).to.be.deep.equal({
+                    id: 'mocha-junit-reporter',
+                    mochaFile: 'junit.xml'
+                });
+
+                expect(reporter.getReporterOptions(reporter.getOptions({
+                    reporterOptions: {
+                        cmrOutput: ['tests/custom-internal-reporter', 'output', 'customName'],
                         configFile: 'tests/custom-internal-dynamic-output-config.json'
                     }
                 }), 'mocha-junit-reporter')).to.be.deep.equal({
