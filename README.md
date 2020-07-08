@@ -47,6 +47,26 @@ $ ./node_modules/.bin/mocha --reporter cypress-multi-reporters
 
 ### Configuring reporters
 
+Set the reporters configuration using `--reporter-options configFile=config.json`.
+- Include reporters in `reporterEnabled` as a comma-delimited list
+  ```js
+  {
+      "reporterEnabled": "spec, @my-org/custom"
+  }
+  ```
+- Specify each reporter's configuration using its camel-cased name, followed by `reporterOptions`, as key.
+  > For scoped reporters such as example @myorg/custom, remove all special characters.
+  ```js
+  {
+      "reporterEnabled": "spec, @my-org/custom",
+      "myOrgCustomReporterOptions": {
+          // [...]
+      }
+  }
+  ```
+
+#### Examples:
+
 * Generate `spec` and `json` reports.
 
 ```js
