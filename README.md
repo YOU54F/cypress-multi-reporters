@@ -64,6 +64,50 @@ Set the reporters configuration using `--reporter-options configFile=config.json
       }
   }
   ```
+- You can also use a `.js` file to use Javascript logic to configure the reporters. 
+Ex:
+  ```js
+  // Set the reporters configuration using `--reporter-options configFile=reporterConfig.js`.
+
+  // In reporterConfig.js
+  const locale = process.env.SITE_LOCALE;
+
+  module.exports = {
+    "reporterEnabled": "mochawesome, mocha-junit-reporter",
+    "mochawesomeReporterOptions": {
+	    "reportDir": `.reports/${locale}`
+    },
+    "mochaJunitReporterReporterOptions": {
+	    "mochaFile": `./junit/${locale}/[hash].xml`
+  };
+  ```
+
+
+  This is useful, for example, if you need to run CI jobs on multiple sites using a script like:
+  ```bash
+    #!/bin/bash
+    # By default run on all sites but you can pass paramenters to run on other sites
+    args="$@"
+    allsites="US UK AU"
+    sites=${args:-$allsites}
+
+    echo "Will run on $sites"
+
+    success=0
+    for site in $sites
+    do
+        echo "Running on $site"
+        export SITE_LOCALE="$site"
+        npx cypress run --reporter-options configFile=reporterConfig.js
+        ret_code=$?
+        if [ $ret_code -ne 0 ]; then
+             echo "Run for $site - Exited with an ERROR: $ret_code"
+            success=$ret_code
+        fi
+    done
+    echo "All sites finished running. Exiting with $success"
+    exit $success
+  ```
 
 #### Examples:
 
