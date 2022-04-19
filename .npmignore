@@ -14,3 +14,6 @@ commitlint.config.js
 .nyc_output/
 coverage
 cypress-multi-reporters.tar.gz
+renovate.json
+.editorconfig
+.ncurc.js
