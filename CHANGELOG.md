@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/you54f/cypress-multi-reporters/compare/v1.5.0...v1.6.0) (2022-04-19)
+
+
+### Features
+
+* add gh pipeline ([#161](https://github.com/you54f/cypress-multi-reporters/issues/161)) ([c66ef47](https://github.com/you54f/cypress-multi-reporters/commit/c66ef470ce7f63b888ad37ce17c2e5cb8d995f3c))
+
 ## [1.5.0](https://github.com/you54f/cypress-multi-reporters/compare/v1.4.0...v1.5.0) (2021-04-12)
 
 ## [1.4.0](https://github.com/you54f/cypress-multi-reporters/compare/v1.3.0...v1.4.0) (2020-05-12)
