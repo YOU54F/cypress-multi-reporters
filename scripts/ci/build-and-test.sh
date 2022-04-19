@@ -8,5 +8,3 @@ yarn install
 yarn run lint
 yarn run devtest
 yarn run test
-rm -rf node_modules
-yarn install --production
