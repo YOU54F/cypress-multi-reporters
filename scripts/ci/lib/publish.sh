@@ -15,5 +15,5 @@ echo "--> Releasing version ${VERSION}"
 
 echo "--> Releasing artifacts"
 echo "    Publishing cypress-multi-reporters@${VERSION}..."
-npm publish --tag latest --dry-run
+npm publish --tag latest
 echo "    done!"
