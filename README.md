@@ -1,6 +1,10 @@
 ## cypress-multi-reporters
 
-Generate multiple mocha reports in a single mocha execution.
+⚠️ NOTICE: We have moved to https://github.com/YOU54F/cypress-plugins
+
+Source is now here https://github.com/YOU54F/cypress-plugins/tree/master/cypress-multi-reporters
+
+👉 Generate multiple mocha reports in a single mocha execution.
 
 ![npm version](https://img.shields.io/npm/v/cypress-multi-reporters.svg)
 ![npm](https://img.shields.io/npm/dm/cypress-multi-reporters.svg)
